@@ -1,4 +1,4 @@
-package domain;
+package domain.position;
 
 public class Position {
     private File file;
@@ -9,4 +9,7 @@ public class Position {
         this.rank = rank;
     }
 
+    public static Position of(File file, Rank rank) {
+        return new Position(file, rank);
+    }
 }

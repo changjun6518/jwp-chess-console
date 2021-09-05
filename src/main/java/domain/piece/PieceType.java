@@ -1,4 +1,4 @@
-package domain;
+package domain.piece;
 
 public enum PieceType {
     KING(),
@@ -7,5 +7,6 @@ public enum PieceType {
     KNIGHT(),
     BISHOP(),
     PAWN(),
+    NONE(),
 
 }
