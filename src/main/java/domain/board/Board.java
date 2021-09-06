@@ -9,6 +9,4 @@ import java.util.Map;
 public class Board {
     private Map<Position, Piece> board = new HashMap<>();
 
-
-
 }
