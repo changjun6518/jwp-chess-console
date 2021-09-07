@@ -1,17 +1,31 @@
 package domain.position;
 
+import domain.direction.Direction;
+import exception.BoardOutOfIndexException;
+
 import java.util.Objects;
 
 public class Position {
-    private File file;
-    private Rank rank;
+    private static final int BOARD_START_INDEX = 0;
+    private static final int BOARD_END_INDEX = 8;
 
-    public Position(File file, Rank rank) {
+    private int file;
+    private int rank;
+
+    public int getFile() {
+        return file;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public Position(int file, int rank) {
         this.file = file;
         this.rank = rank;
     }
 
-    public static Position of(File file, Rank rank) {
+    public static Position of(int file, int rank) {
         return new Position(file, rank);
     }
 
@@ -28,5 +42,18 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(file, rank);
+    }
+
+    public Position updatePosition(Direction direction) {
+        if (checkValidatePosition(file + direction.getCol(), rank + direction.getRow())) {
+            throw new BoardOutOfIndexException();
+        }
+        return new Position(file + direction.getCol(), rank + direction.getRow());
+    }
+
+
+    private boolean checkValidatePosition(int file, int rank) {
+        return file >= BOARD_START_INDEX && file < BOARD_END_INDEX &&
+                rank >= BOARD_START_INDEX && rank < BOARD_END_INDEX;
     }
 }

@@ -30,4 +30,24 @@ public class Piece {
     public int hashCode() {
         return Objects.hash(pieceType, team);
     }
+
+    public boolean isOtherTeam(Piece otherPiece) {
+        return team != otherPiece.team;
+    }
+
+    public boolean isNone() {
+        return team == Team.NONE;
+    }
+
+    public boolean isSameTeam(Piece otherPiece) {
+        return team == otherPiece.team;
+    }
+
+    public boolean isWhite() {
+        return team == Team.WHITE;
+    }
+
+    public boolean isBlack() {
+        return team == Team.BLACK;
+    }
 }

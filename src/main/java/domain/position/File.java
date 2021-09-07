@@ -1,5 +1,6 @@
 package domain.position;
 
+
 public enum File {
     A('a', 1),
     B('b', 2),
@@ -10,11 +11,20 @@ public enum File {
     G('g', 7),
     H('h', 8),;
 
-    private final char value;
-    private final int order;
+    private final char key;
+    private final int value;
 
-    File(char value, int order) {
-        this.value = value;
-        this.order = order;
+    public char getKey() {
+        return key;
     }
+
+    public int getValue() {
+        return value;
+    }
+
+    File(char key, int value) {
+        this.key = key;
+        this.value = value;
+    }
+
 }

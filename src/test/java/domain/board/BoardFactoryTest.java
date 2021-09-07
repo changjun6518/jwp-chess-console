@@ -30,7 +30,7 @@ class BoardFactoryTest {
     void initChessboard_locationTest() {
         // given
         Piece king = Piece.of(PieceType.KING, Team.WHITE);
-        Position position = new Position(File.E, Rank.ONE);
+        Position position = new Position(5,1);
         // when
         final HashMap<Position, Piece> board = BoardFactory.createBoard();
         final Piece piece = board.get(position);

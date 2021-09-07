@@ -10,6 +10,10 @@ public enum Rank {
     SEVEN(7),
     EIGHT(8);
 
+    public int getValue() {
+        return value;
+    }
+
     private final int value;
 
     Rank(int value) {
