@@ -8,6 +8,8 @@ import java.util.Objects;
 public class Position {
     private static final int BOARD_START_INDEX = 0;
     private static final int BOARD_END_INDEX = 8;
+    private static final int FILE_ASCII = 96;
+    private static final int RANK_ASCII = 48;
 
     private int file;
     private int rank;
@@ -27,6 +29,12 @@ public class Position {
 
     public static Position of(int file, int rank) {
         return new Position(file, rank);
+    }
+
+    public static Position of(String position) {
+        int nextFile = position.charAt(0) - FILE_ASCII;
+        int nextRank = position.charAt(1) - RANK_ASCII;
+        return new Position(nextFile, nextRank);
     }
 
     @Override

@@ -1,5 +1,9 @@
 package domain.piece;
 
+import domain.board.Board;
+import domain.position.Position;
+
+import java.util.List;
 import java.util.Objects;
 
 public class Piece {
@@ -49,5 +53,14 @@ public class Piece {
 
     public boolean isBlack() {
         return team == Team.BLACK;
+    }
+
+    public boolean movable(Position fromPosition, Board board, String to) {
+        List<Position> possiblePaths = pieceType.getPossiblePaths(fromPosition, board);
+        for (Position possiblePath : possiblePaths) {
+            System.out.println("possiblePath = " + possiblePath);
+        }
+        System.out.println();
+        return pieceType.getPossiblePaths(fromPosition, board).contains(Position.of(to));
     }
 }

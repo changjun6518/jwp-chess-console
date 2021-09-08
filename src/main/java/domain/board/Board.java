@@ -1,6 +1,8 @@
 package domain.board;
 
 import domain.piece.Piece;
+import domain.piece.PieceType;
+import domain.piece.Team;
 import domain.position.Position;
 
 import java.util.HashMap;
@@ -17,6 +19,11 @@ public class Board {
         return board.get(position);
     }
 
+    private Piece findPieceByPosition(String position) {
+        Position po = Position.of(position);
+        return board.get(po);
+    }
+
     public boolean isValidPosition(Position nextPosition) {
         int x = nextPosition.getFile();
         int y = nextPosition.getRank();
@@ -26,5 +33,14 @@ public class Board {
 
     public void updateSquareBy(Position position, Piece piece) {
         board.put(position, piece);
+    }
+
+    public void move(String from, String to) {
+        Piece fromPiece = findPieceByPosition(from);
+
+        if (fromPiece.movable(Position.of(from), this, to)) {
+            updateSquareBy(Position.of(to), fromPiece);
+            updateSquareBy(Position.of(from), Piece.of(PieceType.NONE, Team.NONE));
+        }
     }
 }

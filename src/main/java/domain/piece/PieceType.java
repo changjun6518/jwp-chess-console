@@ -1,9 +1,11 @@
 package domain.piece;
 
+import domain.board.Board;
 import domain.direction.Direction;
 import domain.moveStrategy.MoveStrategy;
 import domain.moveStrategy.MultiMoveStrategy;
 import domain.moveStrategy.SingleMoveStrategy;
+import domain.position.Position;
 
 import java.util.List;
 
@@ -21,5 +23,9 @@ public enum PieceType {
 
     PieceType(MoveStrategy moveStrategy) {
         this.moveStrategy = moveStrategy;
+    }
+
+    public List<Position> getPossiblePaths(Position from, Board board) {
+        return moveStrategy.possiblePositions(from, board);
     }
 }
