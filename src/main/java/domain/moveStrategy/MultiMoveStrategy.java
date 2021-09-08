@@ -24,7 +24,7 @@ public class MultiMoveStrategy implements MoveStrategy {
 
         for (Direction direction : directions) {
             Position nextPosition = from.updatePosition(direction);
-            while (true) {
+            while (board.isValidPosition(nextPosition)) {
 
                 Piece nextPiece = board.findPieceByPosition(nextPosition);
 

@@ -15,7 +15,7 @@ import domain.position.Position;
 import domain.position.Rank;
 
 class BoardFactoryTest {
-    @DisplayName("초기화 테스트")
+    @DisplayName("initialization test")
     @Test
     void initChessboard_size() {
         // when
@@ -25,7 +25,7 @@ class BoardFactoryTest {
         assertThat(board.size()).isEqualTo(64);
     }
 
-    @DisplayName("위치 테스트")
+    @DisplayName("position test")
     @Test
     void initChessboard_locationTest() {
         // given

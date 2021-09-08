@@ -78,4 +78,13 @@ public enum Direction {
         return Collections.emptyList();
     }
 
+    public static boolean isDiagonal(Direction direction) {
+        return Arrays.asList(NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST).contains(direction);
+    }
+
+    public static boolean isForward(Direction direction) {
+        return Arrays.asList(NORTH, NORTH_NORTH, SOUTH, SOUTH_SOUTH).contains(direction);
+    }
+
+
 }

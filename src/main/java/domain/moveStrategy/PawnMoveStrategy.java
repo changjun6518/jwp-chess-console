@@ -12,29 +12,36 @@ public class PawnMoveStrategy implements MoveStrategy{
     private static final int FIRST_WHITE_RANK = 2;
     private static final int FIRST_BLACK_RANK = 7;
 
-    private List<Direction> whiteDirections;
-    private List<Direction> blackDirections;
+    private List<Direction> directions;
 
-    public PawnMoveStrategy(List<Direction> whiteDirections, List<Direction> blackDirections) {
-        this.whiteDirections = whiteDirections;
-        this.blackDirections = blackDirections;
+    public PawnMoveStrategy(List<Direction> directions) {
+        this.directions = directions;
     }
 
     @Override
     public List<Position> possiblePositions(Position from, Board board) {
-        if (!isFirstPawn(from)) {
-            whiteDirections = Direction.getWhitePawnDirections();
-            blackDirections = Direction.getBlackPawnDirections();
-        }
         ArrayList<Position> path = new ArrayList<>();
         Piece fromPiece = board.findPieceByPosition(from);
 
-        for (Position position : di) {
-
+        if (!isFirstPawn(from)) {
+            directions = fromPiece.isWhite() ? Direction.getWhitePawnDirections() : Direction.getBlackPawnDirections();
         }
+
+        for (Direction direction : directions) {
+            Position nextPosition = from.updatePosition(direction);
+            Piece nextPiece = board.findPieceByPosition(nextPosition);
+
+            if (Direction.isDiagonal(direction) && nextPiece.isOtherTeam(fromPiece)) {
+                path.add(nextPosition);
+            }
+
+            if (Direction.isForward(direction) && nextPiece.isNone()) {
+                path.add(nextPosition);
+            }
+        }
+
+        return path;
     }
-
-
 
     private boolean isFirstPawn(Position from) {
         if (from.getRank() == FIRST_WHITE_RANK || from.getRank() == FIRST_BLACK_RANK) {
