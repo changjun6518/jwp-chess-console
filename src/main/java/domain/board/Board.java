@@ -5,11 +5,12 @@ import domain.piece.PieceType;
 import domain.piece.Team;
 import domain.position.Position;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
-    private Map<Position, Piece> board = new HashMap<>();
+    private boolean finished = false;
+
+    private final Map<Position, Piece> board;
 
     public Board(Map<Position, Piece> board) {
         this.board = board;
@@ -35,12 +36,36 @@ public class Board {
         board.put(position, piece);
     }
 
-    public void move(String from, String to) {
+    public Team move(String from, String to) {
         Piece fromPiece = findPieceByPosition(from);
+        Piece toPiece = findPieceByPosition(to);
 
         if (fromPiece.movable(Position.of(from), this, to)) {
             updateSquareBy(Position.of(to), fromPiece);
-            updateSquareBy(Position.of(from), Piece.of(PieceType.NONE, Team.NONE));
+            updateSquareBy(Position.of(from), Piece.of(PieceType.NONE, Team.NONE, '.'));
         }
+
+        if (toPiece.isKing()) {
+            // how? 게임 끝
+            // 함수 넘겨버리자 ->
+            finished = true;
+        }
+
+        return changTurn(fromPiece);
+    }
+
+    public Character getPieceMarkBy(Position position) {
+        return findPieceByPosition(position).getMark();
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    private Team changTurn(Piece piece) {
+        if (piece.isWhite()) {
+            return Team.BLACK;
+        }
+        return Team.WHITE;
     }
 }

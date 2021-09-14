@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,34 +29,41 @@ class BoardFactoryTest {
     void setUp() {
         System.out.println("1");
         board = BoardFactory.createTestBoard();
-        board.updateSquareBy(Position.of(3, 3), Piece.of(PieceType.QUEEN, Team.WHITE));
+        board.updateSquareBy(Position.of(3, 3), Piece.of(PieceType.QUEEN, Team.WHITE,'q'));
     }
 
 
     @DisplayName("initialization test")
     @Test
+    @Disabled
     void initChessboard_size() {
         // when
-//        final HashMap<Position, Piece> board = BoardFactory.createBoard();
+        final HashMap<Position, Piece> board = BoardFactory.createBoard();
 
         // then
-//        assertThat(board.size()).isEqualTo(64);
+        assertThat(board.size()).isEqualTo(64);
     }
 
     @DisplayName("position test")
     @Test
+    @Disabled
     void initChessboard_locationTest() {
 //        // given
-//        Piece king = Piece.of(PieceType.KING, Team.WHITE);
-//        Position position = new Position(5, 1);
+        Piece king = Piece.of(PieceType.KING, Team.WHITE,'k');
+        Position position = new Position(5, 1);
 //        // when
-//        final HashMap<Position, Piece> board = BoardFactory.createBoard();
-//        final Piece piece = board.get(position);
+        final HashMap<Position, Piece> board = BoardFactory.createBoard();
+        final Piece piece = board.get(position);
 //
 //        // then
-//        assertThat(king).isEqualTo(piece);
+        assertThat(king).isEqualTo(piece);
     }
 
+    @Test
+    void finalBoardTest() {
+        board.updateSquareBy(Position.of("a2"), Piece.of(PieceType.QUEEN, Team.BLACK,'Q'));
+
+    }
 
     @DisplayName("Move 테스트")
     @ParameterizedTest
@@ -74,15 +82,15 @@ class BoardFactoryTest {
         // then
         // 보드의 pawn 위치가 퀸 인지?
         Piece afterPiece = board.findPieceByPosition(Position.of(to));
-        assertThat(afterPiece).isEqualTo(Piece.of(PieceType.QUEEN, Team.WHITE));
+        assertThat(afterPiece).isEqualTo(Piece.of(PieceType.QUEEN, Team.WHITE,'q'));
 
     }
 
 
     private static Stream<Arguments> getForMoveTest() {
         return Stream.of(
-                Arguments.of(Position.of(4, 4), Piece.of(PieceType.KING, Team.BLACK), "d4"),
-                Arguments.of(Position.of(3, 2), Piece.of(PieceType.KING, Team.BLACK), "c2")
+                Arguments.of(Position.of(4, 4), Piece.of(PieceType.KING, Team.BLACK,'K'), "d4"),
+                Arguments.of(Position.of(3, 2), Piece.of(PieceType.KING, Team.BLACK,'K'), "c2")
         );
     }
 

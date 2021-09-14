@@ -9,15 +9,16 @@ import java.util.Objects;
 public class Piece {
     private PieceType pieceType;
     private Team team;
+    private Character mark;
 
-
-    public Piece(PieceType pieceType, Team team) {
+    public Piece(PieceType pieceType, Team team, Character mark) {
         this.pieceType = pieceType;
         this.team = team;
+        this.mark = mark;
     }
 
-    public static Piece of(PieceType pieceType, Team team) {
-        return new Piece(pieceType, team);
+    public static Piece of(PieceType pieceType, Team team, Character mark) {
+        return new Piece(pieceType, team, mark);
     }
 
     @Override
@@ -62,5 +63,13 @@ public class Piece {
         }
         System.out.println();
         return pieceType.getPossiblePaths(fromPosition, board).contains(Position.of(to));
+    }
+
+    public boolean isKing() {
+        return pieceType == PieceType.KING;
+    }
+
+    public Character getMark() {
+        return mark;
     }
 }

@@ -31,7 +31,7 @@ class PawnMoveStrategyTest {
     @BeforeEach
     void setUp() {
         board = BoardFactory.createTestBoard();
-        board.updateSquareBy(Position.of(2, 2), Piece.of(PieceType.WHITE_PAWN, Team.WHITE));
+        board.updateSquareBy(Position.of(2, 2), Piece.of(PieceType.WHITE_PAWN, Team.WHITE, 'p'));
     }
 
     @DisplayName("Pawn test")
@@ -51,9 +51,9 @@ class PawnMoveStrategyTest {
 
     private static Stream<Arguments> getCaseForPawnTest() {
         return Stream.of(
-            Arguments.of(Position.of(1, 3), Piece.of(PieceType.BISHOP, Team.BLACK),
+            Arguments.of(Position.of(1, 3), Piece.of(PieceType.BISHOP, Team.BLACK, 'b'),
                     4, Arrays.asList(Position.of(1, 3), Position.of(2, 4))),
-            Arguments.of(Position.of(2, 4), Piece.of(PieceType.BISHOP, Team.BLACK),
+            Arguments.of(Position.of(2, 4), Piece.of(PieceType.BISHOP, Team.BLACK,'B'),
                     3, Arrays.asList(Position.of(1, 3), Position.of(2, 3)))
         );
     }

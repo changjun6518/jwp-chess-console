@@ -19,7 +19,7 @@ public enum PieceType {
     BLACK_PAWN(new SingleMoveStrategy(Direction.getFirstBlackPawnDirections())),
     NONE(new SingleMoveStrategy(Direction.getNoneDirections())),;
 
-    private MoveStrategy moveStrategy;
+    private final MoveStrategy moveStrategy;
 
     PieceType(MoveStrategy moveStrategy) {
         this.moveStrategy = moveStrategy;
