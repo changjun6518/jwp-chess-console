@@ -23,28 +23,28 @@ public class BoardFactory {
     }
 
     private static HashMap<Position, Piece> insertWhitePiece() {
-        HashMap<Position, Piece> whitePiecese = new HashMap<>();
+        HashMap<Position, Piece> whitePieces = new HashMap<>();
 
-        whitePiecese.put(Position.of(1,1), Piece.of(PieceType.ROOK, Team.WHITE,'r'));
-        whitePiecese.put(Position.of(2,1), Piece.of(PieceType.KNIGHT, Team.WHITE,'n'));
-        whitePiecese.put(Position.of(3,1), Piece.of(PieceType.BISHOP, Team.WHITE,'b'));
-        whitePiecese.put(Position.of(4,1), Piece.of(PieceType.QUEEN, Team.WHITE,'q'));
-        whitePiecese.put(Position.of(5,1), Piece.of(PieceType.KING, Team.WHITE,'k'));
-        whitePiecese.put(Position.of(6,1), Piece.of(PieceType.BISHOP, Team.WHITE,'b'));
-        whitePiecese.put(Position.of(7,1), Piece.of(PieceType.KNIGHT, Team.WHITE,'n'));
-        whitePiecese.put(Position.of(8,1), Piece.of(PieceType.ROOK, Team.WHITE,'r'));
+        whitePieces.put(Position.of(1,1), Piece.of(PieceType.ROOK, Team.WHITE,'r'));
+        whitePieces.put(Position.of(2,1), Piece.of(PieceType.KNIGHT, Team.WHITE,'n'));
+        whitePieces.put(Position.of(3,1), Piece.of(PieceType.BISHOP, Team.WHITE,'b'));
+        whitePieces.put(Position.of(4,1), Piece.of(PieceType.QUEEN, Team.WHITE,'q'));
+        whitePieces.put(Position.of(5,1), Piece.of(PieceType.KING, Team.WHITE,'k'));
+        whitePieces.put(Position.of(6,1), Piece.of(PieceType.BISHOP, Team.WHITE,'b'));
+        whitePieces.put(Position.of(7,1), Piece.of(PieceType.KNIGHT, Team.WHITE,'n'));
+        whitePieces.put(Position.of(8,1), Piece.of(PieceType.ROOK, Team.WHITE,'r'));
 
         for (int i = BOARD_START; i <= BOARD_END; i++) {
-            whitePiecese.put(Position.of(i, 2), Piece.of(PieceType.WHITE_PAWN, Team.WHITE, 'p'));
+            whitePieces.put(Position.of(i, 2), Piece.of(PieceType.WHITE_PAWN, Team.WHITE, 'p'));
         }
 
-        return whitePiecese;
+        return whitePieces;
     }
 
     private static HashMap<Position, Piece> insertBlackPiece() {
         HashMap<Position, Piece> blackPieces = new HashMap<>();
         for (int i = BOARD_START; i <= BOARD_END; i++) {
-            blackPieces.put(Position.of(i, 7), Piece.of(PieceType.WHITE_PAWN, Team.WHITE, 'P'));
+            blackPieces.put(Position.of(i, 7), Piece.of(PieceType.BLACK_PAWN, Team.BLACK, 'P'));
         }
         blackPieces.put(Position.of(1,8), Piece.of(PieceType.ROOK, Team.BLACK, 'R'));
         blackPieces.put(Position.of(2,8), Piece.of(PieceType.KNIGHT, Team.BLACK, 'N'));

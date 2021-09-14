@@ -10,8 +10,7 @@ import view.Output;
 import java.util.HashMap;
 
 public class Command {
-    private Board board;
-    public void start() {
+    public void start(Board board) {
         HashMap<Position, Piece> initBoard = BoardFactory.createBoard();
         board = new Board(initBoard);
         Output.printBoard(board);
@@ -19,12 +18,15 @@ public class Command {
 
     // move a2 a3
     // 흰색 턴인데? 검은 색말을 움직이려고 하면 오류!
+    public Team move(Board board, String from, String to, Team turn) {
+        Team nextTurn = board.move(from, to, turn);
+        Output.printBoard(board);
 
-    public void move(String from, String to) {
-        Team currentTurn = board.move(from, to);
         if (board.isFinished()) {
             Output.kingDieMessage();
         }
+
+        return nextTurn;
     }
 
     public void end() {

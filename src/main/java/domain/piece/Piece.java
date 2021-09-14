@@ -37,7 +37,14 @@ public class Piece {
     }
 
     public boolean isOtherTeam(Piece otherPiece) {
-        return team != otherPiece.team;
+        if (team == Team.WHITE) {
+            return otherPiece.team == Team.BLACK;
+        }
+        return otherPiece.team == Team.WHITE;
+    }
+
+    public boolean isOtherTeam(Team turn) {
+        return team != turn;
     }
 
     public boolean isNone() {

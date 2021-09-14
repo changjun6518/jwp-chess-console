@@ -25,8 +25,10 @@ public class SingleMoveStrategy implements MoveStrategy {
         for (Direction direction : directions) {
 
             Position nextPosition = from.updatePosition(direction);
+            System.out.println("nextPosition = " + nextPosition);
 
             Piece nextPiece = board.findPieceByPosition(nextPosition);
+            System.out.println("nextPiece = " + nextPiece);
 
             if (nextPiece.isOtherTeam(fromPiece)) {
                 continue;

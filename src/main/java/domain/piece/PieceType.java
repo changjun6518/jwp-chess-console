@@ -4,6 +4,7 @@ import domain.board.Board;
 import domain.direction.Direction;
 import domain.moveStrategy.MoveStrategy;
 import domain.moveStrategy.MultiMoveStrategy;
+import domain.moveStrategy.PawnMoveStrategy;
 import domain.moveStrategy.SingleMoveStrategy;
 import domain.position.Position;
 
@@ -15,8 +16,8 @@ public enum PieceType {
     ROOK(new MultiMoveStrategy(Direction.getRookDirections())),
     KNIGHT(new SingleMoveStrategy(Direction.getKnightDirections())),
     BISHOP(new MultiMoveStrategy(Direction.getBishopDirections())),
-    WHITE_PAWN(new SingleMoveStrategy(Direction.getFirstWhitePawnDirections())),
-    BLACK_PAWN(new SingleMoveStrategy(Direction.getFirstBlackPawnDirections())),
+    WHITE_PAWN(new PawnMoveStrategy(Direction.getFirstWhitePawnDirections())),
+    BLACK_PAWN(new PawnMoveStrategy(Direction.getFirstBlackPawnDirections())),
     NONE(new SingleMoveStrategy(Direction.getNoneDirections())),;
 
     private final MoveStrategy moveStrategy;

@@ -11,8 +11,13 @@ import java.util.Scanner;
 public class Input {
     private static final int BOARD_START = 1;
     private static final int BOARD_END = 8;
-    private final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
 
+    // start, end, move a1 b2, status
+    public static String getUserInput() {
+        String userInput = scanner.nextLine();
+        return userInput;
+    }
 
 }

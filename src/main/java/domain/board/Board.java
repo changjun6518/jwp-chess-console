@@ -36,8 +36,11 @@ public class Board {
         board.put(position, piece);
     }
 
-    public Team move(String from, String to) {
+    public Team move(String from, String to, Team turn) {
         Piece fromPiece = findPieceByPosition(from);
+        if (fromPiece.isOtherTeam(turn)) {
+            throw new IllegalArgumentException("지금 턴이 아닙니다.");
+        }
         Piece toPiece = findPieceByPosition(to);
 
         if (fromPiece.movable(Position.of(from), this, to)) {

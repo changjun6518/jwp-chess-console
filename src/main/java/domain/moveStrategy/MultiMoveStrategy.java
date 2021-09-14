@@ -36,9 +36,11 @@ public class MultiMoveStrategy implements MoveStrategy {
                 if (nextPiece.isSameTeam(fromPiece)) {
                     break;
                 }
+
                 path.add(nextPosition);
 
-                nextPosition = nextPosition.updatePosition(direction);
+//                nextPosition = nextPosition.updatePosition(direction);
+                nextPosition.updatePosition2(direction);
             }
         }
         return path;
