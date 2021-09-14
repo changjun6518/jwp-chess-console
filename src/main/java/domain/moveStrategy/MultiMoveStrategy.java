@@ -30,6 +30,7 @@ public class MultiMoveStrategy implements MoveStrategy {
 
                 if (nextPiece.isOtherTeam(fromPiece)) {
                     path.add(nextPosition);
+                    //Todo
                     break;
                 }
 
