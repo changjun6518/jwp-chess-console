@@ -25,12 +25,10 @@ public class MultiMoveStrategy implements MoveStrategy {
         for (Direction direction : directions) {
             Position nextPosition = from.updatePosition(direction);
             while (board.isValidPosition(nextPosition)) {
-
                 Piece nextPiece = board.findPieceByPosition(nextPosition);
 
-                if (nextPiece.isOtherTeam(fromPiece)) {
+                if (fromPiece.isOtherTeam(nextPiece)) {
                     path.add(nextPosition);
-                    //Todo
                     break;
                 }
 
@@ -40,8 +38,7 @@ public class MultiMoveStrategy implements MoveStrategy {
 
                 path.add(nextPosition);
 
-//                nextPosition = nextPosition.updatePosition(direction);
-                nextPosition.updatePosition2(direction);
+                nextPosition = nextPosition.updatePosition(direction);
             }
         }
         return path;

@@ -23,19 +23,15 @@ public class SingleMoveStrategy implements MoveStrategy {
         Piece fromPiece = board.findPieceByPosition(from);
 
         for (Direction direction : directions) {
-
             Position nextPosition = from.updatePosition(direction);
-            System.out.println("nextPosition = " + nextPosition);
-
             Piece nextPiece = board.findPieceByPosition(nextPosition);
-            System.out.println("nextPiece = " + nextPiece);
 
-            if (nextPiece.isOtherTeam(fromPiece)) {
-                continue;
+            if (board.isValidPosition(nextPosition)) {
+                if (fromPiece.isOtherTeam(nextPiece)) {
+                    continue;
+                }
+                path.add(nextPosition);
             }
-
-            path.add(nextPosition);
-
         }
         return path;
     }

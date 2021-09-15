@@ -29,16 +29,16 @@ public class PawnMoveStrategy implements MoveStrategy{
 
         for (Direction direction : directions) {
             Position nextPosition = from.updatePosition(direction);
-            System.out.println("nextPosition = " + nextPosition);
             Piece nextPiece = board.findPieceByPosition(nextPosition);
-            System.out.println("nextPiece = " + nextPiece);
 
-            if (Direction.isDiagonal(direction) && nextPiece.isOtherTeam(fromPiece)) {
-                path.add(nextPosition);
-            }
+            if (board.isValidPosition(nextPosition)) {
+                if (Direction.isDiagonal(direction) && nextPiece.isOtherTeam(fromPiece)) {
+                    path.add(nextPosition);
+                }
 
-            if (Direction.isForward(direction) && nextPiece.isNone()) {
-                path.add(nextPosition);
+                if (Direction.isForward(direction) && nextPiece.isNone()) {
+                    path.add(nextPosition);
+                }
             }
         }
 
