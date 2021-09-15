@@ -56,8 +56,6 @@ public class Position {
 //        if (checkValidatePosition(file + direction.getCol(), rank + direction.getRow())) {
 //            throw new BoardOutOfIndexException();
 //        }
-//        file += direction.getCol();
-//        rank += direction.getRow();
         return new Position(file + direction.getCol(), rank + direction.getRow());
     }
 
@@ -69,7 +67,10 @@ public class Position {
         rank += direction.getRow();
     }
 
-    private boolean checkValidatePosition(int file, int rank) {
+    public static boolean checkValidatePosition(String position) {
+        int file = position.charAt(0) - FILE_ASCII;
+        int rank = position.charAt(1) - RANK_ASCII;
+
         return file >= BOARD_START_INDEX && file < BOARD_END_INDEX &&
                 rank >= BOARD_START_INDEX && rank < BOARD_END_INDEX;
     }

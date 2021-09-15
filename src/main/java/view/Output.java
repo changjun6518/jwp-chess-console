@@ -34,4 +34,8 @@ public class Output {
     public static void endMessage() {
         System.out.println("체스게임을 종료합니다!");
     }
+
+    public static void scoreMessage(double whiteScore, double blackScore) {
+        System.out.printf("흰색 팀의 점수는 %.1f 검은 색 팀의 점수는 %.1f 입니다.\n", whiteScore, blackScore);
+    }
 }

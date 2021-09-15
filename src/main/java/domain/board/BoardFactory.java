@@ -8,8 +8,8 @@ import domain.position.Rank;
 import java.util.HashMap;
 
 public class BoardFactory {
-    private static final int BOARD_START = 1;
-    private static final int BOARD_END = 8;
+    public static final int BOARD_START = 1;
+    public static final int BOARD_END = 8;
     private static final int NONE_START = 3;
     private static final int NONE_END = 6;
 

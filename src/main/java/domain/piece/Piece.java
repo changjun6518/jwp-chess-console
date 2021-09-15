@@ -79,4 +79,15 @@ public class Piece {
     public Character getMark() {
         return mark;
     }
+
+    public double getPieceScore() {
+        return pieceType.getScore();
+    }
+
+    public boolean isWhitePawn() {
+        return pieceType == PieceType.WHITE_PAWN;
+    }
+    public boolean isBlackPawn() {
+        return pieceType == PieceType.BLACK_PAWN;
+    }
 }
