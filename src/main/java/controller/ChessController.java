@@ -4,6 +4,7 @@ import domain.board.Board;
 import domain.board.BoardFactory;
 import domain.piece.Team;
 import domain.position.Position;
+import org.eclipse.jetty.server.Authentication;
 import view.Input;
 import view.Output;
 import view.UserCommand;
@@ -14,9 +15,8 @@ import java.util.List;
 public class ChessController {
     private final List<String> commandCandidates = Arrays.asList("start", "end", "status", "move");
     private Board board;
-
     private final Command command;
-    private final UserCommand userCommand;
+    private UserCommand userCommand;
     private Team turn;
 
     public ChessController(Command command) {
@@ -29,14 +29,17 @@ public class ChessController {
         turn = Team.WHITE;
 
         while (true) {
-            String[] userInput = Input.getUserInput();
+            for (UserCommand value : UserCommand.values()) {
+                if (Input.userInputArray[0].equals(value.name())) {
+                    userCommand = value;
+                }
+            }
 
-            if (!isValidCommand(userInput)) {
+            if (!isValidCommand()) {
                 continue;
             }
 
-
-            if (userInput[0] == UserCommand.START) {
+            if (userCommand.isStart()) {
                 board = command.start();
                 Output.printBoard(board);
             } else if (board == null) {
@@ -60,20 +63,20 @@ public class ChessController {
         command.end();
     }
 
-    private boolean isValidCommand(String[] userInput) {
-        if (isMoveCommand(userInput)) {
-            if (userInput.length != 3) {
+    private boolean isValidCommand() {
+        if (isMoveCommand(Input.userInputArray)) {
+            if (Input.userInputArray.length != 3) {
                 System.out.println("source, target 위치를 제대로 입력해 주세요.");
                 return false;
             }
-            String source = userInput[1];
-            String target = userInput[2];
+            String source = Input.userInputArray[1];
+            String target = Input.userInputArray[2];
 
             if (!isValidPosition(source) || !isValidPosition(target)) {
                 System.out.println("올바른 좌표를 입력해주세요.");
                 return false;
             }
-        } else if (!commandCandidates.contains(userInput[0])) {
+        } else if (!commandCandidates.contains(Input.userInputArray[0])) {
             System.out.println("올바른 명령어를 입력해주세요.");
             return false;
         }

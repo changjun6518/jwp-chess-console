@@ -6,13 +6,25 @@ public enum UserCommand {
     STATUS("status"),
     MOVE("move");
 
-    String command;
+    private String command;
 
     UserCommand(String command) {
         this.command = command;
     }
 
-    boolean isStart(String userInput) {
+    public String isStart() {
+        return command;
+    }
 
+    boolean isEnd() {
+        return this == END;
+    }
+
+    boolean isStatus() {
+        return this == STATUS;
+    }
+
+    boolean isMove() {
+        return this == MOVE;
     }
 }

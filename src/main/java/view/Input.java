@@ -12,13 +12,12 @@ public class Input {
     private static final int BOARD_START = 1;
     private static final int BOARD_END = 8;
     private static final Scanner scanner = new Scanner(System.in);
-
+    public static String[] userInputArray;
 
     // start, end, move a1 b2, status
-    public static String[] getUserInput() {
+    public static void getUserInput() {
         String userInput = scanner.nextLine();
-        String[] userInputArray = userInput.split(" ");
-        return userInputArray;
+        userInputArray = userInput.split(" ");
     }
 
 }
