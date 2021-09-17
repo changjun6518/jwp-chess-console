@@ -64,12 +64,10 @@ public class Piece {
     }
 
     public boolean movable(Position fromPosition, Board board, String to) {
-        List<Position> possiblePaths = pieceType.getPossiblePaths(fromPosition, board);
-        for (Position possiblePath : possiblePaths) {
-            System.out.println("possiblePath = " + possiblePath);
+        if (pieceType.getPossiblePaths(fromPosition, board).contains(Position.of(to))) {
+            return true;
         }
-        System.out.println();
-        return pieceType.getPossiblePaths(fromPosition, board).contains(Position.of(to));
+        throw new IllegalArgumentException("해당 기물이 갈 수 없는 곳입니다!");
     }
 
     public boolean isKing() {

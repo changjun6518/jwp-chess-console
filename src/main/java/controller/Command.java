@@ -10,10 +10,9 @@ import view.Output;
 import java.util.HashMap;
 
 public class Command {
-    public void start(Board board) {
+    public Board start() {
         HashMap<Position, Piece> initBoard = BoardFactory.createBoard();
-        board = new Board(initBoard);
-        Output.printBoard(board);
+        return new Board(initBoard);
     }
 
     // move a2 a3

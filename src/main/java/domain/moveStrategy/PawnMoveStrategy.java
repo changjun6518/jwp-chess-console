@@ -32,7 +32,7 @@ public class PawnMoveStrategy implements MoveStrategy{
             Piece nextPiece = board.findPieceByPosition(nextPosition);
 
             if (board.isValidPosition(nextPosition)) {
-                if (Direction.isDiagonal(direction) && nextPiece.isOtherTeam(fromPiece)) {
+                if (Direction.isDiagonal(direction) && fromPiece.isOtherTeam(nextPiece)) {
                     path.add(nextPosition);
                 }
 

@@ -15,9 +15,10 @@ public class Input {
 
 
     // start, end, move a1 b2, status
-    public static String getUserInput() {
+    public static String[] getUserInput() {
         String userInput = scanner.nextLine();
-        return userInput;
+        String[] userInputArray = userInput.split(" ");
+        return userInputArray;
     }
 
 }

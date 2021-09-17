@@ -71,8 +71,8 @@ public class Position {
         int file = position.charAt(0) - FILE_ASCII;
         int rank = position.charAt(1) - RANK_ASCII;
 
-        return file >= BOARD_START_INDEX && file < BOARD_END_INDEX &&
-                rank >= BOARD_START_INDEX && rank < BOARD_END_INDEX;
+        return file >= BOARD_START_INDEX && file <= BOARD_END_INDEX &&
+                rank >= BOARD_START_INDEX && rank <= BOARD_END_INDEX;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class ConsoleChessAplication {
         Board board = new Board(initBoard);
         Command command = new Command();
 
-        ChessController chessController = new ChessController(board, command);
+        ChessController chessController = new ChessController(command);
 
         chessController.run();
     }

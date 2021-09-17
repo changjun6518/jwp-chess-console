@@ -50,6 +50,7 @@ public class Board {
             updateSquareBy(Position.of(from), Piece.of(PieceType.NONE, Team.NONE, '.'));
         }
 
+
         if (toPiece.isKing()) {
             // how? 게임 끝
             // 함수 넘겨버리자 ->

@@ -25,7 +25,7 @@
   - 게임 종료 : end
   - 기물 이동 : move source위치 target위치 - 예. move b2 b3
   - 점수 현황 : status
-- [ ] 예외 처리 
+- [x] 예외 처리 
   - 명령어 검증
     - start -> move, end, status 명령어 순서를 지켰는 지
     - 유효한 명령어를 입력했는 지
@@ -35,7 +35,7 @@
     - 유효한 source, target 이름인지 (예 move aa b123)
     - source, target 누락되지 않았는 지 (예 move a1  )
   
-  - 보드 인덱스 범위 벗어나는 지
-  - moveStrategy 에러메세지 출력 추가
-  - start 안하고 바로 move 명령어가 실행되는 경우 
-  - move만 입력했을 때 
+  - ~~보드 인덱스 범위 벗어나는 지~~
+  - ~~moveStrategy 에러메세지 출력 추가~~
+  - ~~start 안하고 바로 move 명령어가 실행되는 경우~~
+  - ~~move만 입력했을 때~~
