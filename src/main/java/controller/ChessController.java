@@ -5,6 +5,9 @@ import domain.board.BoardFactory;
 import domain.piece.Piece;
 import domain.piece.Team;
 import domain.position.Position;
+import exception.InvalidCommandException;
+import exception.InvalidPositionException;
+import exception.MoveCommandException;
 import org.eclipse.jetty.server.Authentication;
 import view.Input;
 import view.Output;
@@ -26,12 +29,8 @@ public class ChessController {
     public void run() {
         Output.initMessage();
 
-        while (true) {
-            Input.getUserInput();
-            if (!isValidCommand()) {
-                continue;
-            }
-            CommandType command = CommandType.findSymbol(Input.userInputArray[0]);
+        CommandType command;
+        while ((command = isValidCommand(getCommand())).isNotEnd()) {
             command.execute(board);
 
             if (board.isFinished()) {
@@ -41,32 +40,35 @@ public class ChessController {
         Command.end();
     }
 
-    private boolean isValidCommand() {
-        if (isMoveCommand(Input.userInputArray)) {
-            if (Input.userInputArray.length != 3) {
-                System.out.println("source, target 위치를 제대로 입력해 주세요.");
-                return false;
-            }
-            String source = Input.userInputArray[1];
-            String target = Input.userInputArray[2];
-
-            if (!isValidPosition(source) || !isValidPosition(target)) {
-                System.out.println("올바른 좌표를 입력해주세요.");
-                return false;
-            }
-        } else if (!commandCandidates.contains(Input.userInputArray[0])) {
-            System.out.println("올바른 명령어를 입력해주세요.");
-            return false;
-        }
-
-        return true;
+    private CommandType getCommand() {
+        Input.getUserInput();
+        return CommandType.findSymbol(Input.userInputArray[0]);
     }
 
-    private boolean isMoveCommand(String[] userInput) {
-        if (userInput[0].equals("move")) {
-            return true;
+    private CommandType isValidCommand(CommandType command) {
+        try {
+            if (command.isNotUnknown()) {
+                if (command.isMove()) {
+                    checkMoveCommandValidation();
+                }
+            }
+        } catch (InvalidCommandException | MoveCommandException | InvalidPositionException e) {
+            System.out.println(e.getMessage());
+            return isValidCommand(getCommand());
         }
-        return false;
+        return command;
+    }
+
+    private void checkMoveCommandValidation() {
+        if (Input.userInputArray.length != 3) {
+            throw new MoveCommandException();
+        }
+
+        String source = Input.userInputArray[1];
+        String target = Input.userInputArray[2];
+        if (!isValidPosition(source) || !isValidPosition(target)) {
+            throw new InvalidPositionException();
+        }
     }
 
     private boolean isValidPosition(String position) {

@@ -1,6 +1,8 @@
 package controller;
 
 import domain.board.Board;
+import exception.InvalidCommandException;
+import exception.InvalidPositionException;
 import view.Input;
 import view.Output;
 
@@ -48,5 +50,20 @@ public enum CommandType {
                 .filter(type -> type.symbol.equals(command))
                 .findFirst()
                 .orElse(CommandType.UNKNOWN);
+    }
+
+    public boolean isNotUnknown() {
+        if (this == CommandType.UNKNOWN) {
+            throw new InvalidCommandException();
+        }
+        return true;
+    }
+
+    public boolean isMove() {
+        return this == CommandType.MOVE;
+    }
+
+    public boolean isNotEnd() {
+        return this != CommandType.END;
     }
 }
