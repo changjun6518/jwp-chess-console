@@ -5,13 +5,14 @@ import domain.piece.PieceType;
 import domain.piece.Team;
 import domain.position.Position;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
     private boolean finished = false;
     private Team turn = Team.WHITE;
 
-    private final Map<Position, Piece> board;
+    private Map<Position, Piece> board;
 
     public Board(Map<Position, Piece> board) {
         this.board = board;
@@ -78,5 +79,9 @@ public class Board {
 
     public void finishGame() {
         finished = true;
+    }
+
+    public void initBoard() {
+        this.board = BoardFactory.createBoard();
     }
 }

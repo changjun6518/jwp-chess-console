@@ -2,6 +2,7 @@ package controller;
 
 import domain.board.Board;
 import domain.board.BoardFactory;
+import domain.piece.Piece;
 import domain.piece.Team;
 import domain.position.Position;
 import org.eclipse.jetty.server.Authentication;
@@ -10,19 +11,20 @@ import view.Output;
 import view.UserCommand;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class ChessController {
     private final List<String> commandCandidates = Arrays.asList("start", "end", "status", "move");
     private Board board;
 
-    public ChessController(Board board) {
-        this.board = board;
+    public ChessController() {
+        HashMap<Position, Piece> initBoard = BoardFactory.createBoard();
+        board = new Board(initBoard);
     }
 
     public void run() {
         Output.initMessage();
-
 
         while (true) {
             Input.getUserInput();

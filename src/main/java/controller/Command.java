@@ -19,7 +19,6 @@ public class Command {
     // 흰색 턴인데? 검은 색말을 움직이려고 하면 오류!
     public static void move(Board board, String from, String to) {
         board.move(from, to);
-        Output.printBoard(board);
 
         if (board.isFinished()) {
             Output.kingDieMessage();

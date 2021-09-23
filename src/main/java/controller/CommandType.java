@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 public enum CommandType {
     START("start", (board)->{
-        board = Command.start();
+        board.initBoard();
         Output.printBoard(board);
     }),
     END("end", (Board::finishGame)),
