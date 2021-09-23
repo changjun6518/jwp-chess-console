@@ -11,9 +11,8 @@ public class ConsoleChessAplication {
     public static void main(String[] args) {
         HashMap<Position, Piece> initBoard = BoardFactory.createBoard();
         Board board = new Board(initBoard);
-        Command command = new Command();
 
-        ChessController chessController = new ChessController(command);
+        ChessController chessController = new ChessController(board);
 
         chessController.run();
     }

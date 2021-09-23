@@ -10,25 +10,24 @@ import view.Output;
 import java.util.HashMap;
 
 public class Command {
-    public Board start() {
+    public static Board start() {
         HashMap<Position, Piece> initBoard = BoardFactory.createBoard();
         return new Board(initBoard);
     }
 
     // move a2 a3
     // 흰색 턴인데? 검은 색말을 움직이려고 하면 오류!
-    public Team move(Board board, String from, String to, Team turn) {
-        Team nextTurn = board.move(from, to, turn);
+    public static void move(Board board, String from, String to) {
+        board.move(from, to);
         Output.printBoard(board);
 
         if (board.isFinished()) {
             Output.kingDieMessage();
         }
 
-        return nextTurn;
     }
 
-    public void end() {
+    public static void end() {
         Output.endMessage();
     }
 }

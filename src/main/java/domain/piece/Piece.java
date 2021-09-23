@@ -88,4 +88,8 @@ public class Piece {
     public boolean isBlackPawn() {
         return pieceType == PieceType.BLACK_PAWN;
     }
+
+    public Team getTeam() {
+        return team;
+    }
 }

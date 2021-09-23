@@ -15,52 +15,28 @@ import java.util.List;
 public class ChessController {
     private final List<String> commandCandidates = Arrays.asList("start", "end", "status", "move");
     private Board board;
-    private final Command command;
-    private UserCommand userCommand;
-    private Team turn;
 
-    public ChessController(Command command) {
-        this.command = command;
+    public ChessController(Board board) {
+        this.board = board;
     }
 
     public void run() {
         Output.initMessage();
 
-        turn = Team.WHITE;
 
         while (true) {
-            for (UserCommand value : UserCommand.values()) {
-                if (Input.userInputArray[0].equals(value.name())) {
-                    userCommand = value;
-                }
-            }
-
+            Input.getUserInput();
             if (!isValidCommand()) {
                 continue;
             }
+            CommandType command = CommandType.findSymbol(Input.userInputArray[0]);
+            command.execute(board);
 
-            if (userCommand.isStart()) {
-                board = command.start();
-                Output.printBoard(board);
-            } else if (board == null) {
-                System.out.println("start부터 입력해주세요");
-                continue;
-            } else if (userInput[0].equals("end")) {
-                board.finishGame();
-            } else if (userInput[0].equals("status")) {
-                Calculator.calcScore(board);
-            } else if (userInput[0].equals("move")) {
-                try {
-                    turn = command.move(board, userInput[1], userInput[2], turn);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
             if (board.isFinished()) {
                 break;
             }
         }
-        command.end();
+        Command.end();
     }
 
     private boolean isValidCommand() {

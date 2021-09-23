@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class Board {
     private boolean finished = false;
+    private Team turn = Team.WHITE;
 
     private final Map<Position, Piece> board;
 
@@ -36,14 +37,14 @@ public class Board {
         board.put(position, piece);
     }
 
-    public Team move(String from, String to, Team turn) {
+    public void move(String from, String to) {
         Piece fromPiece = findPieceByPosition(from);
+        Piece toPiece = findPieceByPosition(to);
 
         if (fromPiece.isOtherTeam(turn)) {
             throw new IllegalArgumentException("지금 턴이 아닙니다.");
         }
 
-        Piece toPiece = findPieceByPosition(to);
 
         if (fromPiece.movable(Position.of(from), this, to)) {
             updateSquareBy(Position.of(to), fromPiece);
@@ -57,7 +58,7 @@ public class Board {
             finished = true;
         }
 
-        return changTurn(fromPiece);
+        turn = changTurn(fromPiece);
     }
 
     public Character getPieceMarkBy(Position position) {
@@ -68,7 +69,7 @@ public class Board {
         return finished;
     }
 
-    private Team changTurn(Piece piece) {
+    public Team changTurn(Piece piece) {
         if (piece.isWhite()) {
             return Team.BLACK;
         }

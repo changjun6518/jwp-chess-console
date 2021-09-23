@@ -77,7 +77,7 @@ class BoardFactoryTest {
         board.updateSquareBy(toPosition, toPiece);
         // when
         // 퀸이 pawn을 먹을 때
-        board.move("c3", to, Team.WHITE);
+        board.move("c3", to);
 
         // then
         // 보드의 pawn 위치가 퀸 인지?

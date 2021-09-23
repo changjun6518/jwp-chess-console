@@ -1,0 +1,52 @@
+package controller;
+
+import domain.board.Board;
+import view.Input;
+import view.Output;
+
+import java.util.Arrays;
+import java.util.function.Consumer;
+
+public enum CommandType {
+    START("start", (board)->{
+        board = Command.start();
+        Output.printBoard(board);
+    }),
+    END("end", (Board::finishGame)),
+    STATUS("status",(board -> {
+        Calculator.calcScore(board);
+        Output.printBoard(board);
+    })),
+    MOVE("move", (board -> {
+        try {
+            Command.move(board, Input.userInputArray[1], Input.userInputArray[2]);
+            Output.printBoard(board);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    })),
+    CHANGE("change",(board -> {
+        System.out.println("체인지!!");
+    })),
+    UNKNOWN(null, null),;
+
+    private final String symbol;
+    private final Consumer<Board> commandFunc;
+
+    CommandType(String symbol, Consumer<Board> commandFunc) {
+        this.symbol = symbol;
+        this.commandFunc = commandFunc;
+    }
+
+    public void execute(Board board) {
+        this.commandFunc.accept(board);
+    }
+
+    public static CommandType findSymbol(String command) {
+        return Arrays.stream(CommandType.values())
+                .filter(type -> type.symbol != null)
+                .filter(type -> type.symbol.equals(command))
+                .findFirst()
+                .orElse(CommandType.UNKNOWN);
+    }
+}
