@@ -1,8 +1,8 @@
-package controller;
+package controller.command;
 
+import controller.Calculator;
 import domain.board.Board;
 import exception.InvalidCommandException;
-import exception.InvalidPositionException;
 import view.Input;
 import view.Output;
 
@@ -21,7 +21,10 @@ public enum CommandType {
     })),
     MOVE("move", (board -> {
         try {
-            Command.move(board, Input.userInputArray[1], Input.userInputArray[2]);
+            board.move(Input.userInputArray[1], Input.userInputArray[2]);
+            if (board.isFinished()) {
+                Output.kingDieMessage();
+            }
             Output.printBoard(board);
         } catch (Exception e) {
             System.out.println(e.getMessage());

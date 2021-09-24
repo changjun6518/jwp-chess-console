@@ -39,3 +39,14 @@
   - ~~moveStrategy 에러메세지 출력 추가~~
   - ~~start 안하고 바로 move 명령어가 실행되는 경우~~
   - ~~move만 입력했을 때~~
+  
+## 배운 점들
+- 함수형 인터페이스 적용 (CommandType) (뭔가 별로)
+- 인터페이스 적용 (CommandType2 - Command, PieceType - MoveStrategy)
+
+
+## 아쉬운 점
+- File, Rank wrapper 해야하는가? (기본형 int 사용)
+- Move 전략 다른 방법은 어떤게 있을까?
+- command 전략 다른 방법은 어떤게 있을까?
+- static이 많이 사용되었는데 좋은 코드일까? 사용하지 않고 어떻게?

@@ -1,9 +1,7 @@
 package domain.board;
 
 import domain.piece.*;
-import domain.position.File;
 import domain.position.Position;
-import domain.position.Rank;
 
 import java.util.HashMap;
 

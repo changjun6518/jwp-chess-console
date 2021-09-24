@@ -1,6 +1,5 @@
-package controller;
+package controller.command;
 
-import controller.command.CommandType;
 import domain.board.Board;
 import domain.board.BoardFactory;
 import domain.piece.Piece;
@@ -15,11 +14,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class ChessController {
-    private final List<String> commandCandidates = Arrays.asList("start", "end", "status", "move");
+public class ChessController2 {
     private Board board;
 
-    public ChessController() {
+    public ChessController2() {
         HashMap<Position, Piece> initBoard = BoardFactory.createBoard();
         board = new Board(initBoard);
     }
@@ -27,10 +25,9 @@ public class ChessController {
     public void run() {
         Output.initMessage();
 
-        CommandType command;
+        CommandType2 command;
         while ((command = isValidCommand(getCommand())).isNotEnd()) {
             command.execute(board);
-
             if (board.isFinished()) {
                 break;
             }
@@ -38,12 +35,12 @@ public class ChessController {
         Output.endMessage();
     }
 
-    private CommandType getCommand() {
+    private CommandType2 getCommand() {
         Input.getUserInput();
-        return CommandType.findSymbol(Input.userInputArray[0]);
+        return CommandType2.findSymbol(Input.userInputArray[0]);
     }
 
-    private CommandType isValidCommand(CommandType command) {
+    private CommandType2 isValidCommand(CommandType2 command) {
         try {
             if (command.isNotUnknown()) {
                 if (command.isMove()) {
@@ -72,4 +69,5 @@ public class ChessController {
     private boolean isValidPosition(String position) {
         return position.length() == 2 && Position.checkValidatePosition(position);
     }
+
 }

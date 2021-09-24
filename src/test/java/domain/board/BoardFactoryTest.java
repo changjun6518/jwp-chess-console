@@ -13,12 +13,9 @@ import org.junit.jupiter.api.Test;
 import domain.piece.Piece;
 import domain.piece.PieceType;
 import domain.piece.Team;
-import domain.position.File;
 import domain.position.Position;
-import domain.position.Rank;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class BoardFactoryTest {
